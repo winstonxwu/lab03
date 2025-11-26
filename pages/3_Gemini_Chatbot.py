@@ -10,16 +10,19 @@ genai.configure(api_key=key)
 chatPrompt = st.chat_input("Type prompt here")
 model = genai.GenerativeModel("gemini-2.5-flash")
 
+if "nba_data" not in st.session_state:
+    st.session_state.nba_data = [leaguedashptstats.LeagueDashPtStats(season='2025-26').get_data_frames()[0]]
 if "messages" not in st.session_state:
-    st.session_state.messages = [leaguedashptstats.LeagueDashPtStats(season='2025-26').get_data_frames()[0]]
+    st.session_state.messages = []
+
 
 user = st.chat_message("user")
 if chatPrompt:
     try:
         user.write(chatPrompt)
         ai = st.chat_message("ai")
-        response = model.generate_content(f"You are a specialized nba expert on the 2025-2026 season. Respond to the prompt {chatPrompt} briefly, with a maximum response of 150-200 words. Past conversations: {st.session_state.messages[1:].join(",")}. Use information from the 2025-2026 season: {st.session_state.message[0]}")
+        response = model.generate_content(f"You are a specialized nba expert on the 2025-2026 season. Respond to the prompt {chatPrompt} briefly, with a maximum response of 150-200 words. Past conversations: {st.session_state.messages.join(",")}. Use information from the 2025-2026 season: {st.session_state.nba_data}")
         ai.write(response.text)
         st.session_state.messages.append(chatPrompt+response)
     except:
-        ai.write("The Gemini API has errored. This is likely due to a rate error. Please wait for requests to reload.")
+        ai.write("The Gemini API has errored. This is likely due to a rate error, so please wait for requests to reload.")
