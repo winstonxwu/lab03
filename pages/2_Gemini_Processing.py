@@ -22,23 +22,29 @@ with tab1:
 
     p1 = st.selectbox("Player 1", nba_names, index=0)
     p2 = st.selectbox("Player 2", nba_names, index=1)
-    if p1 == p2:
-        st.warning("Please use two different players to compare")
-    p1_id = [p for p in nba if p['full_name'] == p1][0]['id']
-    p2_id = [p for p in nba if p['full_name'] == p2][0]['id']
 
 
-    st.caption("Select a focus for the comparison")
-    focus = st.selectbox("Main focus",["Completeness", "Scoring", "Playmaking", "Defense", "Rebounding"])
+    submit = st.button("Submit")
 
-    p1_stats = playercareerstats.PlayerCareerStats(player_id=p1_id)
-    df_p1 = p1_stats.get_data_frames()[0]
+    if submit:
+        if p1 == p2:
+            st.warning("Please use two different players to compare")
+        p1_id = [p for p in nba if p['full_name'] == p1][0]['id']
+        p2_id = [p for p in nba if p['full_name'] == p2][0]['id']
 
-    p2_stats = playercareerstats.PlayerCareerStats(player_id=p2_id)
-    df_p2 = p2_stats.get_data_frames()[0]
+
+        st.caption("Select a focus for the comparison")
+        focus = st.selectbox("Main focus",["Completeness", "Scoring", "Playmaking", "Defense", "Rebounding"])
+
+        p1_stats = playercareerstats.PlayerCareerStats(player_id=p1_id)
+        df_p1 = p1_stats.get_data_frames()[0]
+
+        p2_stats = playercareerstats.PlayerCareerStats(player_id=p2_id)
+        df_p2 = p2_stats.get_data_frames()[0]
+
 
 with tab2:
-    if p1 and p2 and focus:
+    if submit:
         response = model.generate_content(f"Compare two NBA players based on their stats from their career and our main focus {focus}. The two players we want to compare are {p1} and {p2}. The career stats for {p1} are {df_p1} and the career stats for {p2} are {df_p2}. Try your best to be unbiased and try to adjust for different eras of play and pace if two players are from different times.")
         st.subheader("The analysis:")
         st.write(response.text)
