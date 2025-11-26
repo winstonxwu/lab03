@@ -38,6 +38,9 @@ with tab1:
     df_p2 = p2_stats.get_data_frames()[0]
 
 with tab2:
-    response = model.generate_content(f"Compare two NBA players based on their stats from their career and our main focus {focus}. The two players we want to compare are {p1} and {p2}. The career stats for {p1} are {df_p1} and the career stats for {p2} are {df_p2}. Try your best to be unbiased and try to adjust for different eras of play and pace if two players are from different times.")
-    st.subheader("The analysis:")
-    st.write(response)
+    if p1 and p2 and focus:
+        response = model.generate_content(f"Compare two NBA players based on their stats from their career and our main focus {focus}. The two players we want to compare are {p1} and {p2}. The career stats for {p1} are {df_p1} and the career stats for {p2} are {df_p2}. Try your best to be unbiased and try to adjust for different eras of play and pace if two players are from different times.")
+        st.subheader("The analysis:")
+        st.write(response)
+    else:
+        st.write("Go back and pick players and focus!")
