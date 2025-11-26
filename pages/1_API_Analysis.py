@@ -7,6 +7,8 @@ st.title("Comparing NBA players")
 
 if "num_players" not in st.session_state:
     st.session_state.num_players = 2
+
+    
 if "chosen_players" not in st.session_state:
     st.session_state.chosen_players = []
 

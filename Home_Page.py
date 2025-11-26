@@ -22,8 +22,10 @@ st.subheader("Panav Kalra, Winston Wu")
 st.write("""
 1. **API Analysis**: Getting and visualize our NBA API.
 2. **Gemini Processing** Using Gemini to process NBA API data and output LLM messages
+3. **Gemini Chatbot**: Chatbot that answers questions about NBA players using live stats and Gemini.
 """)
 
 st.markdown("Links to pages")
 st.page_link("pages/1_API_Analysis.py", label="Go to: API Analysis")
 st.page_link("pages/2_Gemini_Processing.py", label="Go to: Gemini Generation")
+st.page_link("pages/3_Gemini_Chatbot.py", label="Go to: Gemini Chatbot")
