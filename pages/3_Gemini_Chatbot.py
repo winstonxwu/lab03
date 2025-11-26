@@ -26,6 +26,6 @@ if chatPrompt:
         ai = st.chat_message("ai")
         response = model.generate_content(f"You are a specialized nba expert on the 2025-2026 season. Respond to the prompt {chatPrompt} briefly, with a maximum response of 150-200 words. Past conversations: {", ".join(st.session_state.messages)}. Use information from the 2025-2026 season to supplement: {st.session_state.nba_data}")
         ai.write(response.text)
-        st.session_state.messages.append(chatPrompt, response.text)
+        st.session_state.messages.append(f"User: {chatPrompt} AI: {response.text}")
     except:
         ai.write("The Gemini API has errored. This is likely due to a rate error, so please wait for requests to reload.")
