@@ -2,6 +2,7 @@ import google.generativeai as genai
 import streamlit as st
 from nba_api.stats.static import players
 from nba_api.stats.endpoints import playercareerstats
+import pandas as pd
 
 key = st.secrets["key"]
 genai.configure(api_key=key)
@@ -19,7 +20,6 @@ nba_names = [p["full_name"] for p in nba]
 tab1, tab2 = st.tabs(["Select Players", "View Analysis"])
 
 with tab1:
-    request_data = False
     st.subheader("Choose two nba players to compare")
 
     p1 = st.selectbox("Player 1", nba_names, index=0)

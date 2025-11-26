@@ -4,7 +4,7 @@ import google.generativeai as genai
 from nba_api.stats.endpoints import leaguedashlineups
 from nba_api.stats.endpoints import leaguedashptstats
 
-st.title("Chat with specialized Gemini chatbot about the 2025-2026 season.")
+st.title("Chat with specialized Gemini chatbot about the 2025-2026 season")
 key = st.secrets["key"]
 genai.configure(api_key=key)
 

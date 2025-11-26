@@ -19,10 +19,6 @@ with st.container():
     st.session_state.num_players = num
 
     player_list = players.get_players()
-
-
-
-
     names = [p["full_name"] for p in player_list]
 
     cols = st.columns(num)
@@ -34,8 +30,6 @@ with st.container():
             chosen.append(pick)
 
     st.session_state.chosen_players = chosen
-
-st.divider()
 
 all_data = []
 avg_rows = []
@@ -67,7 +61,6 @@ if len(all_data) > 0:
 
         with st.expander("Exact numbers"):
             st.dataframe(avg_df, use_container_width=True)
-
     with tab2:
         st.markdown("Points per Season Comparison")
         
@@ -75,7 +68,6 @@ if len(all_data) > 0:
 
         for num, name in enumerate(st.session_state.chosen_players):
             player_df = combined[combined["Player"] == name]
-
             pts_data = player_df[["SEASON_ID", "PTS"]].set_index("SEASON_ID")
 
             with chart_cols[num % 2]:
@@ -86,8 +78,6 @@ if len(all_data) > 0:
         st.markdown("Complete Career Statistics")
 
         player_to_show = st.selectbox("Select Player for stats", st.session_state.chosen_players)
-        
-        
         player_data = combined[combined["Player"] == player_to_show]
 
 
