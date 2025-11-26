@@ -24,7 +24,6 @@ st.write("""
 2. **Gemini Processing** Using Gemini to process NBA API data and output LLM messages
 3. **Gemini Chatbot**: Chatbot that answers questions about NBA players using live stats and Gemini.
 """)
-
 st.markdown("Links to pages")
 st.page_link("pages/1_API_Analysis.py", label="Go to: API Analysis")
 st.page_link("pages/2_Gemini_Processing.py", label="Go to: Gemini Generation")
