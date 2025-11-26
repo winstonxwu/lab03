@@ -13,7 +13,7 @@ model = genai.GenerativeModel("gemini-2.5-flash")
 
 if "nba_data" not in st.session_state:
     df = leaguedashptstats.LeagueDashPtStats(season='2025-26').get_data_frames()[0]
-    df = df[0].head(50).to_dict(orient="records")
+    df = df.head(50).to_dict(orient="records")
     st.session_state.nba_data = [df]
 if "messages" not in st.session_state:
     st.session_state.messages = []
