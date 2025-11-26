@@ -11,7 +11,7 @@ chatPrompt = st.chat_input("Type prompt here")
 model = genai.GenerativeModel("gemini-2.5-flash")
 
 if "messages" not in st.session_state:
-    st.session_state.messages = []
+    st.session_state.messages = [leaguedashptstats.LeagueDashPtStats(season='2025-26').get_data_frames()[0]]
 
 user = st.chat_message("user")
 if chatPrompt:
