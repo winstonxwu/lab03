@@ -20,6 +20,7 @@ nba_names = [p["full_name"] for p in nba]
 tab1, tab2 = st.tabs(["Select Players", "View Analysis"])
 
 with tab1:
+    request_data = False
     st.subheader("Choose two nba players to compare")
 
     p1 = st.selectbox("Player 1", nba_names, index=0)
