@@ -8,6 +8,7 @@ model = genai.GenerativeModel("gemini-2.5-flash")
 with st.chat_message("user"):
     if chatPrompt:
         try:
+            st.write(chatPrompt)
             response = model.generate_content(f"You are a specialized nba expert. Respond to the prompt {chatPrompt} briefly, in about 150-200 words.")
             st.write(response.text)
         except:
