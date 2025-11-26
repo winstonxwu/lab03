@@ -6,7 +6,7 @@ from nba_api.stats.endpoints import playercareerstats
 key = st.secrets["key"]
 genai.configure(api_key=key)
 
-model = genai.GenerativeModel("gemini-1.5-flash")
+model = genai.GenerativeModel("gemini-2.5-flash")
 
 st.title("Gemini NBA Comparison Report")
 
